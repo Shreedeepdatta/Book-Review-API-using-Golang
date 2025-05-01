@@ -1,5 +1,4 @@
 package models
 
-type Book struct{
-	id ``
+type Book struct {
 }
