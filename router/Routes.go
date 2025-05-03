@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func RegisterRoutes(r *gin.Engine){
-	r.GET("/books",handlers.FetchallBooks)
-	r.GET("/book/:id", handlers.FetchOneBook)
+func RegisterRoutes(r *gin.Engine) {
+	r.POST("/book", handlers.CreateBook)
+	r.POST("/user", handlers.CreateUser)
 }
