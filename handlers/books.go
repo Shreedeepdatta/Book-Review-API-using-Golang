@@ -13,25 +13,25 @@ import (
 
 func CreateBook(ctx *gin.Context) {
 	// Handler to create a new user
-	var user models.Book
-	if err:= 	ctx.ShouldBindJSON(&user); err!=nil{
+	var book models.Book
+	if err:= 	ctx.ShouldBindJSON(&book); err!=nil{
 		ctx.JSON(http.StatusBadRequest, gin.H{
 			"error":"Invalid Input",
 		})
 		return
 	}
-	user.ID=primitive.NewObjectID()
-	collection:=database.Client.Database("bookreviewsAPI").Collection("users")
+	book.ID=primitive.NewObjectID()
+	collection:=database.Client.Database("bookreviewsAPI").Collection("book")
 	c, cancel:=context.WithTimeout(context.Background(), 5*time.Second)
 	defer cancel()
-	_, err := collection.InsertOne(c, user)
+	_, err := collection.InsertOne(c, book)
 	if err!=nil{
 		ctx.JSON(http.StatusInternalServerError, gin.H{
-			"message":"Failed to save user to the database",
+			"message":"Failed to save book to the database",
 		})
 		return
 	}
 	ctx.JSON(http.StatusCreated, gin.H{
-		"message":"user registered succesfully",
+		"message":"book registered succesfully",
 	})
 }
