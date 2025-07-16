@@ -49,3 +49,7 @@ func CreateUser(ctx *gin.Context) {
 		"message":"user registered succesfully",
 	})
 }
+
+func Fetchallusers(){
+	
+}

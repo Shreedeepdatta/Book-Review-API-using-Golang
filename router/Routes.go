@@ -9,4 +9,5 @@ import (
 func RegisterRoutes(r *gin.Engine) {
 	r.POST("/book", handlers.CreateBook)
 	r.POST("/user", handlers.CreateUser)
+	r.POST("/author", handlers.CreateAuthor) 
 }

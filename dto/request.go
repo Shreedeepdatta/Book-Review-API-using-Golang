@@ -1,4 +1,4 @@
-package models
+package dto
 
 import (
 	"time"
@@ -7,12 +7,12 @@ import (
 )
 
 type User struct {
-	ID       primitive.ObjectID `json:"id" bson:"_id,omitempty"`
-	Username string             `json:"username" bson:"username" binding:"required,min=3"`
-	Password string             `json:"password" bson:"password" binding:"required,min=6"`
-	Email    string             `json:"email" bson:"email" binding:"required,email"`
-	IsAuthor bool               `json:"is_author" bson:"is_author"`
-	CreatedAt time.Time         `json:"created_at" bson:"created_at"`
+	ID        primitive.ObjectID `json:"id" bson:"_id,omitempty"`
+	Username  string             `json:"username" bson:"username" binding:"required,min=3"`
+	Password  string             `json:"password" bson:"password" binding:"required,min=6"`
+	Email     string             `json:"email" bson:"email" binding:"required,email"`
+	IsAuthor  bool               `json:"is_author" bson:"is_author"`
+	CreatedAt time.Time          `json:"created_at" bson:"created_at"`
 }
 
 type Author struct {
@@ -48,4 +48,36 @@ type Review struct {
 	Review    string             `json:"review" bson:"review" binding:"required,min=1"`
 	Rating    int                `json:"rating" bson:"rating" binding:"required,min=1,max=5"`
 	CreatedAt time.Time          `json:"created_at" bson:"created_at"`
+}
+
+// Request structs
+type RegisterRequest struct {
+	Username string `json:"username" binding:"required,min=3"`
+	Password string `json:"password" binding:"required,min=6"`
+	Email    string `json:"email" binding:"required,email"`
+	IsAuthor bool   `json:"is_author"`
+}
+
+type LoginRequest struct {
+	Username string `json:"username" binding:"required"`
+	Password string `json:"password" binding:"required"`
+}
+
+type CreateAuthorRequest struct {
+	Name        string `json:"name" binding:"required"`
+	Biography   string `json:"biography"`
+	Nationality string `json:"nationality"`
+}
+
+type CreateBookRequest struct {
+	Title       string    `json:"title" binding:"required"`
+	Description string    `json:"description"`
+	Genre       string    `json:"genre"`
+	ISBN        string    `json:"isbn"`
+	PublishedAt time.Time `json:"published_at"`
+}
+
+type CreateReviewRequest struct {
+	Rating int    `json:"rating" binding:"required,min=1,max=5"`
+	Review string `json:"review" binding:"required,min=1"`
 }

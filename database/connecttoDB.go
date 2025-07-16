@@ -35,3 +35,7 @@ func InitMongo() {
 
 	fmt.Println("✅ Connected to MongoDB")
 }
+
+func GetDB() *mongo.Database {
+	return Client.Database("bookreviewsAPI")
+}
